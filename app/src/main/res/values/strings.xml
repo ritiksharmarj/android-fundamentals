@@ -3,4 +3,6 @@
     <string name="Toast">Toasts</string>
     <string name="CheckboxRadiobutton">checkbox and Radiobutton</string>
     <string name="backButton">Back Button</string>
+    <string name="birthday_name">Happy Birthday, Sam!</string>
+    <string name="birthday_wisher">From Emma.</string>
 </resources>
