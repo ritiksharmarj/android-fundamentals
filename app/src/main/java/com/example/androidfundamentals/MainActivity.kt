@@ -22,5 +22,12 @@ class MainActivity : AppCompatActivity() {
         btnToast.setOnClickListener {
             Toast.makeText(this, "Hi, I am Toast!", Toast.LENGTH_SHORT).show()
         }
+
+        // Intent and starting birthday activity
+        btnIntent.setOnClickListener {
+            Intent(this, HappyBirthday::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 }
