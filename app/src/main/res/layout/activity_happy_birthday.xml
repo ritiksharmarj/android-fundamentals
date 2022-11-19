@@ -19,7 +19,7 @@
         android:contentDescription="Birthday Party Image" />
 
     <TextView
-        android:id="@+id/happyBirthdayText"
+        android:id="@+id/happyBirthdayTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/happyBirthdayText2"
+        android:id="@+id/happyBirthdayFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"

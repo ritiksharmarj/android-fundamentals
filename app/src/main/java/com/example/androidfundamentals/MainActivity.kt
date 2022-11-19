@@ -29,5 +29,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+        // Passing data between activities
+        btnPassingData.setOnClickListener {
+            Intent(
+                this,
+                PassingDataActivity::class.java
+            ).also { startActivity(it) }
+        }
     }
 }
