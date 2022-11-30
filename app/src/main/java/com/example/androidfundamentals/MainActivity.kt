@@ -37,5 +37,20 @@ class MainActivity : AppCompatActivity() {
                 PassingDataActivity::class.java
             ).also { startActivity(it) }
         }
+
+        // Implicit Intent
+        btnImplicitIntent.setOnClickListener {
+            Intent(this, ImplicitIntentActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        // btnFinance
+        btnFinance.setOnClickListener {
+            Intent(
+                this,
+                FinanceActivity::class.java
+            ).also { startActivity(it) }
+        }
     }
 }
