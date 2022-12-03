@@ -2,12 +2,13 @@ package com.example.androidfundamentals
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_happy_birthday.*
+import com.example.androidfundamentals.databinding.ActivityHappyBirthdayBinding
 
 class HappyBirthday : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_happy_birthday)
+        val binding = ActivityHappyBirthdayBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         var birthdayPersonName = intent.getStringExtra("EXTRA_NAME_TO")
         var wishesFrom = intent.getStringExtra("EXTRA_NAME_FROM")
@@ -23,7 +24,7 @@ class HappyBirthday : AppCompatActivity() {
         val birthdayPersonString = "Happy Birthday, $birthdayPersonName!"
         val wishesFromPersonString = "From $wishesFrom."
 
-        happyBirthdayTo.text = birthdayPersonString
-        happyBirthdayFrom.text = wishesFromPersonString
+        binding.happyBirthdayTo.text = birthdayPersonString
+        binding.happyBirthdayFrom.text = wishesFromPersonString
     }
 }
