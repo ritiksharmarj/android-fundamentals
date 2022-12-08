@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Spinner
 import android.widget.Toast
 import com.example.androidfundamentals.databinding.ActivityMainBinding
 
@@ -54,6 +55,20 @@ class MainActivity : AppCompatActivity() {
                 this,
                 FinanceActivity::class.java
             ).also { startActivity(it) }
+        }
+
+        // Alert Dialog
+        binding.btnAlertDialog.setOnClickListener {
+            Intent(this, AlertDialogActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        // Spinner Button
+        binding.btnSpinner.setOnClickListener {
+            Intent(this, SpinnerActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 

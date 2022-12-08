@@ -5,4 +5,19 @@
     <string name="backButton">Back Button</string>
     <string name="birthday_name">Happy Birthday, Sam!</string>
     <string name="birthday_wisher">From Emma.</string>
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 </resources>
