@@ -77,6 +77,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+        // Fragment
+        binding.btnFragment.setOnClickListener {
+            Intent(this, FragmentActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
     // Menu Implementation
