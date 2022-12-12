@@ -70,6 +70,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+        // Recycler View
+        binding.btnRecyclerView.setOnClickListener {
+            Intent(this, RecyclerViewActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
     // Menu Implementation
