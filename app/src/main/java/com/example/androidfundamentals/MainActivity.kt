@@ -1,13 +1,15 @@
 package com.example.androidfundamentals
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.androidfundamentals.databinding.ActivityMainBinding
+import com.example.androidfundamentals.fragment.HomeFragment
+import com.example.androidfundamentals.fragment.MessagesFragment
+import com.example.androidfundamentals.fragment.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,74 +17,35 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Checkbox and Radiobutton
-        binding.btnCheckboxRadiobutton.setOnClickListener {
-            Intent(this, ConstraintActivity::class.java).also {
-                startActivity(it)
+        val homeFragment = HomeFragment()
+        val messagesFragment = MessagesFragment()
+        val profileFragment = ProfileFragment()
+
+        // Initial fragment that shows up when we open the app
+        setCurrentFragment(homeFragment)
+
+        // Set fragments to each menu item
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.miHome -> setCurrentFragment(homeFragment)
+                R.id.miMessages -> setCurrentFragment(messagesFragment)
+                R.id.miProfile -> setCurrentFragment(profileFragment)
             }
+            true
         }
 
-        // Toast message
-        binding.btnToast.setOnClickListener {
-            Toast.makeText(this, "Hi, I am Toast!", Toast.LENGTH_SHORT).show()
+        // Number badge on message icon to show "how many messages received".
+        binding.bottomNavigationView.getOrCreateBadge(R.id.miMessages).apply {
+            number = 10
+            isVisible = true
         }
+    }
 
-        // Intent and starting birthday activity
-        binding.btnIntent.setOnClickListener {
-            Intent(this, HappyBirthday::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        // Passing data between activities
-        binding.btnPassingData.setOnClickListener {
-            Intent(
-                this,
-                PassingDataActivity::class.java
-            ).also { startActivity(it) }
-        }
-
-        // Implicit Intent
-        binding.btnImplicitIntent.setOnClickListener {
-            Intent(this, ImplicitIntentActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        // btnFinance
-        binding.btnFinance.setOnClickListener {
-            Intent(
-                this,
-                FinanceActivity::class.java
-            ).also { startActivity(it) }
-        }
-
-        // Alert Dialog
-        binding.btnAlertDialog.setOnClickListener {
-            Intent(this, AlertDialogActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        // Spinner Button
-        binding.btnSpinner.setOnClickListener {
-            Intent(this, SpinnerActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        // Recycler View
-        binding.btnRecyclerView.setOnClickListener {
-            Intent(this, RecyclerViewActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        // Fragment
-        binding.btnFragment.setOnClickListener {
-            Intent(this, FragmentActivity::class.java).also {
-                startActivity(it)
-            }
+    // Bottom Navigation Bar set initial fragment
+    private fun setCurrentFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment, fragment)
+            commit()
         }
     }
 
