@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class SongAdapter(private val songs: List<Songs>) :
     RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
 
+    // View Holder
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvSongTitle: TextView = itemView.findViewById(R.id.tvSongTitle)
         var tvSongDescription: TextView = itemView.findViewById(R.id.tvSongDescription)

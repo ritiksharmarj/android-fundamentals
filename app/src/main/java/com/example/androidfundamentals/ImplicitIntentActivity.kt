@@ -1,7 +1,6 @@
 package com.example.androidfundamentals
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidfundamentals.databinding.ActivityImplicitIntentBinding

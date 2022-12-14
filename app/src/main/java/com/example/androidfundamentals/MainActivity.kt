@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.androidfundamentals.databinding.ActivityMainBinding
 import com.example.androidfundamentals.fragment.HomeFragment
@@ -12,24 +14,44 @@ import com.example.androidfundamentals.fragment.MessagesFragment
 import com.example.androidfundamentals.fragment.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var toggle: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val homeFragment = HomeFragment()
-        val messagesFragment = MessagesFragment()
-        val profileFragment = ProfileFragment()
+        // Toggle for drawer layout
+        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open, R.string.close)
+        binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.drawerNavigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.miDrawerHome -> setCurrentFragment(HomeFragment())
+                R.id.miDrawerMessages -> setCurrentFragment(MessagesFragment())
+                R.id.miDrawerProfile -> setCurrentFragment(ProfileFragment())
+                R.id.miDrawerLogout -> finish()
+            }
+            // Close drawer when click on any item
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+
+            true
+        }
 
         // Initial fragment that shows up when we open the app
-        setCurrentFragment(homeFragment)
+        setCurrentFragment(HomeFragment())
 
         // Set fragments to each menu item
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.miHome -> setCurrentFragment(homeFragment)
-                R.id.miMessages -> setCurrentFragment(messagesFragment)
-                R.id.miProfile -> setCurrentFragment(profileFragment)
+                R.id.miHome -> setCurrentFragment(HomeFragment())
+                R.id.miMessages -> setCurrentFragment(MessagesFragment())
+                R.id.miProfile -> setCurrentFragment(ProfileFragment())
             }
             true
         }
@@ -56,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
+        // Handle item selection for app bar menu items
         when (item.itemId) {
             R.id.miFavorite -> Toast.makeText(this, "Clicked on Favorite", Toast.LENGTH_SHORT)
                 .show()
@@ -72,6 +94,11 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        return true
+        // Handle toggle selection for drawer navigation
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

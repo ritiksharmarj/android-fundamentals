@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.androidfundamentals.*
 import com.example.androidfundamentals.databinding.FragmentHomeBinding
+import com.example.androidfundamentals.viewpager.ViewPagerActivity
 
 class HomeFragment : Fragment() {
 
@@ -74,6 +75,13 @@ class HomeFragment : Fragment() {
         // Recycler View
         binding.btnRecyclerView.setOnClickListener {
             Intent(activity, RecyclerViewActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        // View Pager
+        binding.btnViewPager.setOnClickListener {
+            Intent(activity, ViewPagerActivity::class.java).also {
                 startActivity(it)
             }
         }

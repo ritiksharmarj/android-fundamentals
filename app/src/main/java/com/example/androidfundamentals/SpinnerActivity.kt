@@ -15,7 +15,11 @@ class SpinnerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val customList = listOf("Banana", "Apple", "Mango", "Orange")
-        val adapter = ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, customList)
+        val adapter = ArrayAdapter(
+            this,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            customList
+        )
         binding.spMonths.adapter = adapter
 
         binding.spMonths.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
