@@ -112,10 +112,30 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:text="Swipable views with viewpager 2"
+            android:text="ViewPager 2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRecyclerView" />
+
+        <Button
+            android:id="@+id/btnSharedPreferences"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Shared Preferences"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnViewPager" />
+
+        <Button
+            android:id="@+id/btnNotificationActivity"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Notification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSharedPreferences" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

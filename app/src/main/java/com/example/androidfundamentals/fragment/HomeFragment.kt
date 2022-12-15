@@ -1,17 +1,23 @@
 package com.example.androidfundamentals.fragment
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.androidfundamentals.*
 import com.example.androidfundamentals.databinding.FragmentHomeBinding
 import com.example.androidfundamentals.viewpager.ViewPagerActivity
 
 class HomeFragment : Fragment() {
+
+    private lateinit var requestLauncher: ActivityResultLauncher<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -86,6 +92,31 @@ class HomeFragment : Fragment() {
             }
         }
 
+        // Shared Preferences
+        binding.btnSharedPreferences.setOnClickListener {
+            Intent(activity, SharedPreferences::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        // Request for notification permission on click on notification button
+        requestLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                startActivity(Intent(activity, NotificationActivity::class.java))
+            } else {
+                Toast.makeText(activity, "Permission is not granted.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Notification
+        binding.btnNotificationActivity.setOnClickListener {
+            askForNotificationPermission()
+        }
+
         return binding.root
+    }
+
+    private fun askForNotificationPermission() {
+        requestLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
     }
 }
